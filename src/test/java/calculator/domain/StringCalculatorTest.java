@@ -49,4 +49,13 @@ class StringCalculatorTest {
 
         assertThat(result).isEqualTo(6);
     }
+
+    @Test
+    void addCustomDelimiter() {
+        StringCalculator stringCalculator = new StringCalculator();
+
+        int result = stringCalculator.add("//*\n1*2*3");
+
+        assertThat(result).isEqualTo(6);
+    }
 }

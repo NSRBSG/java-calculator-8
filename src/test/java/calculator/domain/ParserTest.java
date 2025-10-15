@@ -15,4 +15,14 @@ class ParserTest {
 
         assertThat(currentNumbers).isEqualTo(expectedNumbers);
     }
+
+    @Test
+    void parseWithCustomDelimiter() {
+        Parser parser = new Parser();
+
+        String[] currentNumbers = parser.parse("//!\n1!2!3");
+
+        String[] expectedNumbers = {"1", "2", "3"};
+        assertThat(currentNumbers).isEqualTo(expectedNumbers);
+    }
 }
