@@ -2,7 +2,8 @@
 
 ## 소수도 처리할 것인가?
 
-> 결정 : 정수만 처리한다. 요구사항의 '숫자'라는 표현이 모호하다고 생각된다. 과제의 일반적인 의도와 단계적 구현을 고려할 때 정수를 먼저 다루는 것이 합리적이다. 이에 소수점(.)은 숫자가 아닌 문자로 간주하여 `IllegalArgumentException`을 발생시킨다. 소수 처리 기능은 추후 별도의 기능으로 추가할 수 있다.
+> 결정 : 정수만 처리한다. 요구사항의 '숫자'라는 표현이 모호하다고 생각된다. 과제의 일반적인 의도와 단계적 구현을 고려할 때 정수를 먼저 다루는 것이 합리적이다. 이에 소수점(.)은 숫자가 아닌 문자로 간주하여
+`IllegalArgumentException`을 발생시킨다. 소수 처리 기능은 추후 별도의 기능으로 추가할 수 있다.
 
 ---
 
@@ -47,11 +48,11 @@ classDiagram
         +add(String text) int
     }
     class Parser {
-        +parse(String text) Numbers
+        +parse(String text) String[]
     }
     class Numbers {
         -List~Integer~ values
-        +Numbers(List~Integer~ values)
+        +Numbers(String[] values)
         +sum() int
     }
     class InputView {
@@ -66,7 +67,6 @@ classDiagram
     Application ..> StringCalculator
     StringCalculator ..> Parser
     StringCalculator ..> Numbers
-    Parser ..> Numbers
 ```
 
 ---
