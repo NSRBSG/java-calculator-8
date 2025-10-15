@@ -1,6 +1,7 @@
 package calculator.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 
@@ -57,5 +58,53 @@ class StringCalculatorTest {
         int result = stringCalculator.add("//*\n1*2*3");
 
         assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    void addWithNegativeNumbers() {
+        StringCalculator stringCalculator = new StringCalculator();
+
+        assertThatThrownBy(() -> stringCalculator.add("-1,2,3"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
+    @Test
+    void addWithNonNumericInput() {
+        StringCalculator stringCalculator = new StringCalculator();
+
+        assertThatThrownBy(() -> stringCalculator.add("1,!,3"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void addWithConsecutiveDelimiters() {
+        StringCalculator stringCalculator = new StringCalculator();
+
+        assertThatThrownBy(() -> stringCalculator.add("1,,3"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void addWithCustomDelimiterAndNegativeNumber() {
+        StringCalculator stringCalculator = new StringCalculator();
+
+        assertThatThrownBy(() -> stringCalculator.add("//;\n1;-2"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void addWithNullInput() {
+        StringCalculator stringCalculator = new StringCalculator();
+
+        assertThatThrownBy(() -> stringCalculator.add(null))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void addWithFloatNumbers() {
+        StringCalculator stringCalculator = new StringCalculator();
+        assertThatThrownBy(() -> stringCalculator.add("1,2.5,3,4.5,5"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

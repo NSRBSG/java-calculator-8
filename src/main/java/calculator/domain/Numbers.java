@@ -11,7 +11,9 @@ public class Numbers {
         List<Integer> numbers = new ArrayList<>();
 
         for (String stringNumber : stringNumbers) {
+            validateIsInteger(stringNumber);
             int number = Integer.parseInt(stringNumber);
+            validateIsNegativeInteger(number);
 
             numbers.add(number);
         }
@@ -23,5 +25,19 @@ public class Numbers {
         return values.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
+    }
+
+    private void validateIsInteger(String stringNumber) {
+        try {
+            Integer.parseInt(stringNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateIsNegativeInteger(Integer number) {
+        if (number < 0) {
+            throw new IllegalArgumentException();
+        }
     }
 }

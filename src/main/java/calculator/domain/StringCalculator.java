@@ -2,6 +2,10 @@ package calculator.domain;
 
 public class StringCalculator {
     public int add(String text) {
+        if (text == null) {
+            throw new IllegalArgumentException();
+        }
+
         if (text.isEmpty()) {
             return 0;
         }
