@@ -54,6 +54,8 @@ classDiagram
         -List~Integer~ values
         +Numbers(String[] values)
         +sum() int
+        -validateIsInteger(String stringNumber) void
+        -validateIsNegativeInteger(Integer number) void
     }
     class InputView {
         +readInput() String
